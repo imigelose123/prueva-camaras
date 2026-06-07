@@ -1,31 +1,31 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+Este archivo proporciona orientación a Claude Code (claude.ai/code) cuando trabaja con código en este repositorio.
 
-## Project Overview
+## Resumen del Proyecto
 
-Simple Python script to list all cameras connected to the PC (webcams, virtual cameras, IP camera sources). Uses OpenCV for camera detection and FFmpeg for retrieving device names.
+Script simple de Python para listar todas las cámaras conectadas al PC (webcams, cámaras virtuales, fuentes de cámaras IP). Usa OpenCV para la detección de cámaras y FFmpeg para obtener los nombres de los dispositivos.
 
-## Development Commands
+## Comandos de Desarrollo
 
 ```bash
-# Install/restore dependencies
+# Instalar/restaurar dependencias
 uv sync
 uv pip install opencv-python
 
-# Run the camera listing script
+# Ejecutar el script de listado de cámaras
 uv run listar_camaras.py
 ```
 
-## Architecture
+## Arquitectura
 
-**listar_camaras.py** - Main script that:
-1. Calls FFmpeg via subprocess to get camera device names (DirectShow on Windows)
-2. Scans indices 0-15 using OpenCV VideoCapture to detect available cameras
-3. Maps FFmpeg names to OpenCV indices and displays results
+**listar_camaras.py** - Script principal que:
+1. Llama a FFmpeg mediante subprocess para obtener los nombres de los dispositivos de cámara (DirectShow en Windows)
+2. Escanea los índices 0-15 usando OpenCV VideoCapture para detectar las cámaras disponibles
+3. Mapea los nombres de FFmpeg a los índices de OpenCV y muestra los resultados
 
-**FFmpeg Integration**: The script uses `ffmpeg -list_devices true -f dshow -i dummy` and parses stderr with regex to extract camera names. FFmpeg must be installed on the system.
+**Integración con FFmpeg**: El script usa `ffmpeg -list_devices true -f dshow -i dummy` y analiza stderr con regex para extraer los nombres de las cámaras. FFmpeg debe estar instalado en el sistema.
 
-**Dependencies**:
-- opencv-python: Camera capture
-- pywin32: Windows API (installed but not currently used)
+**Dependencias**:
+- opencv-python: Captura de cámara
+- pywin32: API de Windows (instalado pero no utilizado actualmente)
